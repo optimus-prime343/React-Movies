@@ -35,5 +35,9 @@ export const MovieList = ({ movies }: MovieListProps) => {
       </Link>
     ))
   }
-  return <div className='grid gap-6 lg:grid-cols-4'>{renderMoviesList()}</div>
+  return (
+    <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
+      {renderMoviesList()}
+    </div>
+  )
 }

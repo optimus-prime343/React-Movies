@@ -14,7 +14,7 @@ export const Navbar = () => {
             <Image
               src='/images/tmdb_logo.svg'
               width={160}
-              height={80}
+              height={60}
               alt='TMDB Logo'
             />
           </a>

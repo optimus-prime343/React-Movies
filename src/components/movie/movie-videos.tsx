@@ -1,7 +1,7 @@
 import 'swiper/css'
 import 'swiper/css/navigation'
 
-import { Pagination } from 'swiper'
+import { Pagination, Scrollbar } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 interface MovieVideosProps {
@@ -25,8 +25,8 @@ export const MovieVideos = ({ embedIds }: MovieVideosProps) => {
   }
   return (
     <Swiper
-      modules={[Pagination]}
-      pagination={{ clickable: true, bulletClass: 'bg-red-900' }}
+      modules={[Scrollbar]}
+      scrollbar={{ draggable: true }}
       spaceBetween={50}
       slidesPerView={3}
     >
