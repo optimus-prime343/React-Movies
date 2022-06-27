@@ -14,4 +14,17 @@
   .title {
     @apply text-2xl font-bold;
   }
+  .carousel-container {
+    @apply flex gap-4 snap-x snap-mandatory overflow-x-scroll pb-3;
+  }
+}
+
+::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-bl from-cyan-300 to-cyan-600 rounded-md;
+}
+::-webkit-scrollbar-track {
+  @apply bg-neutral-800;
 }

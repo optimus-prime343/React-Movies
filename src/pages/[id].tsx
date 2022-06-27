@@ -19,7 +19,7 @@ const MovieDetailPage: NextPage<{ initialMovieDetails: MovieDetail }> = ({
   if (!movie) return null
   if (isLoading) return <FullPageLoader />
   return (
-    <BaseLayout title={movie.title}>
+    <BaseLayout title={movie.title ?? 'Loading..'}>
       <div
         className='min-h-[90vh] bg-cover py-2'
         style={{

@@ -12,7 +12,7 @@ const HomePage: NextPage<{ initialMovies: Movie[] }> = ({ initialMovies }) => {
   const { data: genres = [] } = useGenres()
   return (
     <BaseLayout>
-      <div className='container py-6'>
+      <div className='container my-2'>
         <MovieGenreList genres={genres} />
         <h1 className='title my-4'>Popular Movies</h1>
         <MovieList movies={movies} />
