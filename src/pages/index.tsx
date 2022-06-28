@@ -4,8 +4,9 @@ import { BaseLayout } from '../components/layouts/base-layout'
 import { MovieGenreList, MovieList } from '../components/movie'
 import { fetchMovieGenres, fetchPopularMovies } from '../services/movie_service'
 import { Movie } from '../types/movie'
+import { MovieGenre } from '../types/movie-genre'
 
-const HomePage: NextPage<{ movies: Movie[]; genres: string[] }> = ({
+const HomePage: NextPage<{ movies: Movie[]; genres: MovieGenre[] }> = ({
   movies,
   genres,
 }) => {

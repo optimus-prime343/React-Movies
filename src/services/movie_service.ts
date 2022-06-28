@@ -1,4 +1,5 @@
 import { Movie, MovieDetail } from '../types/movie'
+import { MovieGenre } from '../types/movie-genre'
 import { axiosClient } from '../utils/axios-client'
 
 interface VideosResponse {
@@ -7,13 +8,12 @@ interface VideosResponse {
     key: string
   }[]
 }
-export const fetchMovieGenres = async (): Promise<string[]> => {
+export const fetchMovieGenres = async (): Promise<MovieGenre[]> => {
   try {
-    const { data } = await axiosClient.get<{
-      genres: { id: number; name: string }[]
-    }>('/genre/movie/list')
-    const genres = data.genres.map(genre => genre.name)
-    return genres
+    const { data } = await axiosClient.get<{ genres: MovieGenre[] }>(
+      '/genre/movie/list'
+    )
+    return data.genres
   } catch (error: any) {
     throw new Error(error.response?.data?.message ?? 'Error fetching movie genres')
   }
@@ -44,5 +44,23 @@ export const fetchMovieDetail = async (id: string): Promise<MovieDetail> => {
     return { videoUrls, ...response.data }
   } catch (error: any) {
     throw new Error(error.response?.data?.message ?? 'Error fetching movie details')
+  }
+}
+export const fetchGenreMovies = async (genreId: number): Promise<Movie[]> => {
+  try {
+    const { data } = await axiosClient.get<{ results: Movie[] }>(
+      `/discover/movie?with_genres=${genreId}`
+    )
+    return data.results
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message ?? 'Error fetching genre movies')
+  }
+}
+export const searchMovies = async (movie: string): Promise<Movie[]> => {
+  try {
+    const { data } = await axiosClient.get<{ results: Movie[] }>(`/search/${movie}`)
+    return data.results
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message ?? 'Error searching movies')
   }
 }

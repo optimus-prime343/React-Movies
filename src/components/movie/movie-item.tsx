@@ -14,7 +14,7 @@ export const MovieItem = ({ movie }: MovieItemProps) => {
   return (
     <div>
       <div className='relative'>
-        <div className='absolute right-4 top-4 z-10'>
+        <div className='absolute right-4 top-4 z-10 cursor-pointer'>
           <BsHeart />
         </div>
         <Image

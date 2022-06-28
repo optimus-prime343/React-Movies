@@ -19,7 +19,9 @@ export const MovieVideos = ({ embedIds }: MovieVideosProps) => {
   return (
     <div>
       <h2 className='text-xl font-bold mb-4'>Official Youtube Videos</h2>
-      <div className='carousel-container'>{renderVideos()}</div>
+      <div className='carousel-container'>
+        {embedIds.length > 0 ? renderVideos() : <p>No videos found</p>}
+      </div>
     </div>
   )
 }

@@ -1,10 +1,11 @@
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
+import { MovieGenre } from '../../types/movie-genre'
 import NextLink from '../ui/next-link'
 
 interface MovieGenreListProps {
-  genres: string[]
+  genres: MovieGenre[]
 }
 export const MovieGenreList = ({ genres }: MovieGenreListProps) => {
   const router = useRouter()
@@ -15,8 +16,12 @@ export const MovieGenreList = ({ genres }: MovieGenreListProps) => {
     )
   const renderGenreList = () => {
     return genres.map((genre, index) => (
-      <NextLink href={`/genre/${genre}`} key={index} className={link(genre)}>
-        {genre}
+      <NextLink
+        href={`/genre/${genre.name}?id=${genre.id}`}
+        key={index}
+        className={link(genre.name)}
+      >
+        {genre.name}
       </NextLink>
     ))
   }

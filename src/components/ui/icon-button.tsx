@@ -18,7 +18,6 @@ export const IconButton = <T extends ElementType = 'button'>({
 }: Props<T> & Omit<ComponentPropsWithoutRef<T>, keyof Props<T>>) => {
   const Component = as ?? 'button'
   const iconClass = classNames('', className, [width ?? 'w-16', height ?? 'w-16'])
-
   return (
     <Component {...props} className={iconClass}>
       {icon}

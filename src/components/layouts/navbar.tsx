@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { BsHeart } from 'react-icons/bs'
 
+import { SearchMovieBar } from '../movie'
 import { IconButton } from '../ui'
 import NextLink from '../ui/next-link'
 
@@ -18,6 +19,7 @@ export const Navbar = () => {
             alt='TMDB Logo'
           />
         </NextLink>
+        <SearchMovieBar />
         <ul>
           <li>
             <Link href='/favorites' passHref>
