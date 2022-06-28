@@ -7,7 +7,17 @@ interface VideosResponse {
     key: string
   }[]
 }
-
+export const fetchMovieGenres = async (): Promise<string[]> => {
+  try {
+    const { data } = await axiosClient.get<{
+      genres: { id: number; name: string }[]
+    }>('/genre/movie/list')
+    const genres = data.genres.map(genre => genre.name)
+    return genres
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message ?? 'Error fetching movie genres')
+  }
+}
 export const fetchPopularMovies = async (): Promise<Movie[]> => {
   try {
     const { data } = await axiosClient.get<{ results: Movie[] }>('/movie/popular')

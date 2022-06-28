@@ -2,14 +2,13 @@ import { GetServerSideProps, NextPage } from 'next'
 
 import { BaseLayout } from '../components/layouts/base-layout'
 import { MovieGenreList, MovieList } from '../components/movie'
-import { useGenres } from '../hooks/use-genres'
-import { useMovies } from '../hooks/use-movies'
-import { fetchPopularMovies } from '../services/movie_service'
+import { fetchMovieGenres, fetchPopularMovies } from '../services/movie_service'
 import { Movie } from '../types/movie'
 
-const HomePage: NextPage<{ initialMovies: Movie[] }> = ({ initialMovies }) => {
-  const { data: movies = [] } = useMovies(initialMovies)
-  const { data: genres = [] } = useGenres()
+const HomePage: NextPage<{ movies: Movie[]; genres: string[] }> = ({
+  movies,
+  genres,
+}) => {
   return (
     <BaseLayout>
       <div className='container my-2'>
@@ -22,8 +21,11 @@ const HomePage: NextPage<{ initialMovies: Movie[] }> = ({ initialMovies }) => {
 }
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const movies = await fetchPopularMovies()
-    return { props: { initialMovies: movies } }
+    const [movies, genres] = await Promise.all([
+      fetchPopularMovies(),
+      fetchMovieGenres(),
+    ])
+    return { props: { movies, genres } }
   } catch (error: any) {
     return { props: { initialMovies: [] } }
   }

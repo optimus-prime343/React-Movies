@@ -6,12 +6,8 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { useEffect } from 'react'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 
 import { Navbar } from '../components/layouts'
-
-const client = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -26,13 +22,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [router])
   return (
-    <QueryClientProvider client={client}>
-      <ReactQueryDevtools />
+    <>
       <Navbar />
       <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
         <Component {...pageProps} />
       </AnimatePresence>
-    </QueryClientProvider>
+    </>
   )
 }
 

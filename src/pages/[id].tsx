@@ -1,23 +1,16 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 
 import { BaseLayout } from '../components/layouts'
 import { MovieVideos } from '../components/movie'
-import { FullPageLoader } from '../components/ui'
-import { useMovieDetails } from '../hooks/use-movie-details'
 import { fetchMovieDetail } from '../services/movie_service'
 import { MovieDetail } from '../types/movie'
 import { getMovieImageUrl } from '../utils/get-movie-image-url'
 
-const MovieDetailPage: NextPage<{ initialMovieDetails: MovieDetail }> = ({
-  initialMovieDetails,
+const MovieDetailPage: NextPage<{ movieDetail: MovieDetail }> = ({
+  movieDetail: movie,
 }) => {
-  const router = useRouter()
-  const movieId = router.query.id as string
-  const { data: movie, isLoading } = useMovieDetails(movieId, initialMovieDetails)
   if (!movie) return null
-  if (isLoading) return <FullPageLoader />
   return (
     <BaseLayout title={movie.title ?? 'Loading..'}>
       <div
@@ -51,11 +44,11 @@ const MovieDetailPage: NextPage<{ initialMovieDetails: MovieDetail }> = ({
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     const id = params?.id as string
-    const initialMovieDetails = await fetchMovieDetail(id)
-    return { props: initialMovieDetails }
+    const movieDetail = await fetchMovieDetail(id)
+    return { props: { movieDetail } }
   } catch (error: any) {
     return {
-      props: { initialMovieDetails: null },
+      props: { movieDetail: null },
     }
   }
 }
