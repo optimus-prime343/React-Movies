@@ -58,9 +58,12 @@ export const fetchGenreMovies = async (genreId: number): Promise<Movie[]> => {
 }
 export const searchMovies = async (movie: string): Promise<Movie[]> => {
   try {
-    const { data } = await axiosClient.get<{ results: Movie[] }>(`/search/${movie}`)
+    const { data } = await axiosClient.get<{ results: Movie[] }>(
+      `/search/movie?query=${movie}`
+    )
     return data.results
   } catch (error: any) {
+    console.log(error)
     throw new Error(error.response?.data?.message ?? 'Error searching movies')
   }
 }

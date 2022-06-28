@@ -13,7 +13,7 @@ const SearchMoviesResultsPage: NextPage<{ movies: Movie[] }> = ({ movies }) => {
   return (
     <BaseLayout title={`Search results for ${query}`}>
       <div className='container py-2'>
-        <h2 className='title'>
+        <h2 className='title mb-4'>
           Showing search results for <span className='text-cyan-600'>{query}</span>
         </h2>
         <MovieList movies={movies} />
