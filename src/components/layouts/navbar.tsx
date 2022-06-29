@@ -19,7 +19,7 @@ export const Navbar = () => {
             alt='TMDB Logo'
           />
         </NextLink>
-        <SearchMovieBar />
+        <SearchMovieBar className='hidden lg:flex' />
         <ul>
           <li>
             <Link href='/favorites' passHref>

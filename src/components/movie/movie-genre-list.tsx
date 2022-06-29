@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 import { MovieGenre } from '../../types/movie-genre'
+import { Carousel } from '../ui'
 import NextLink from '../ui/next-link'
 
 interface MovieGenreListProps {
@@ -25,5 +26,6 @@ export const MovieGenreList = ({ genres }: MovieGenreListProps) => {
       </NextLink>
     ))
   }
-  return <div className='carousel-container'>{renderGenreList()}</div>
+  // return <div className='carousel-container'>{renderGenreList()}</div>
+  return <Carousel>{renderGenreList()}</Carousel>
 }

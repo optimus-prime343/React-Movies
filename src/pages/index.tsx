@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 
 import { BaseLayout } from '../components/layouts/base-layout'
-import { MovieGenreList, MovieList } from '../components/movie'
+import { MovieGenreList, MovieList, SearchMovieBar } from '../components/movie'
 import { fetchMovieGenres, fetchPopularMovies } from '../services/movie_service'
 import { Movie } from '../types/movie'
 import { MovieGenre } from '../types/movie-genre'
@@ -13,6 +13,7 @@ const HomePage: NextPage<{ movies: Movie[]; genres: MovieGenre[] }> = ({
   return (
     <BaseLayout>
       <div className='container my-2'>
+        <SearchMovieBar className='min-w-full mb-4 lg:hidden' />
         <MovieGenreList genres={genres} />
         <h1 className='title my-4'>Popular Movies</h1>
         <MovieList movies={movies} />

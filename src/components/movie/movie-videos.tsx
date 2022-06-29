@@ -1,3 +1,5 @@
+import { Carousel } from '../ui'
+
 interface MovieVideosProps {
   embedIds: string[]
 }
@@ -19,9 +21,11 @@ export const MovieVideos = ({ embedIds }: MovieVideosProps) => {
   return (
     <div>
       <h2 className='text-xl font-bold mb-4'>Official Youtube Videos</h2>
-      <div className='carousel-container'>
-        {embedIds.length > 0 ? renderVideos() : <p>No videos found</p>}
-      </div>
+      {embedIds.length > 0 ? (
+        <Carousel>{renderVideos()}</Carousel>
+      ) : (
+        <p>No Videos Found</p>
+      )}
     </div>
   )
 }

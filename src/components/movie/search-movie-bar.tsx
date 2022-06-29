@@ -1,9 +1,12 @@
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
-import React, { KeyboardEvent, useRef, useState } from 'react'
+import React, { HTMLAttributes, KeyboardEvent, useRef, useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 
-export const SearchMovieBar = () => {
+export const SearchMovieBar = ({
+  className,
+  ...rest
+}: HTMLAttributes<HTMLDivElement>) => {
   const router = useRouter()
   const [query, setQuery] = useState('')
   const [inputFocused, setInputFocused] = useState(false)
@@ -11,6 +14,7 @@ export const SearchMovieBar = () => {
 
   const searchContainer = classNames(
     'min-w-[25rem] border border-transparent flex items-center bg-neutral-800 px-4 py-2 rounded-2xl transition-all duration-500',
+    className,
     { 'bg-black border-cyan-600': inputFocused }
   )
   const handleSearchContainerClick = () => {
@@ -24,7 +28,7 @@ export const SearchMovieBar = () => {
     }
   }
   return (
-    <div onClick={handleSearchContainerClick} className={searchContainer}>
+    <div onClick={handleSearchContainerClick} className={searchContainer} {...rest}>
       <BsSearch />
       <input
         placeholder='Search for a movie'

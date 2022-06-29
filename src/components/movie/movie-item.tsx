@@ -13,7 +13,7 @@ interface MovieItemProps {
 }
 export const MovieItem = ({ movie }: MovieItemProps) => {
   const DefaulMoviePoster = () => (
-    <div className='flex items-center bg-neutral-900 justify-center rounded-md h-[300px]'>
+    <div className='flex items-center bg-neutral-900 justify-center rounded-md h-[290px]'>
       <IoMdWarning />
       <p className='ml-2'>No Image Found</p>
     </div>
@@ -42,9 +42,13 @@ export const MovieItem = ({ movie }: MovieItemProps) => {
           <NextLink href={`/${movie.id}`}>
             <h3 className='text-lg font-medium'>{movie.title}</h3>
           </NextLink>
-          <p className='text-sm mt-2 text-neutral-400'>
-            {formatDate(movie.release_date)}
-          </p>
+          {movie.release_date ? (
+            <p className='text-sm mt-2 text-neutral-400'>
+              {formatDate(movie.release_date)}
+            </p>
+          ) : (
+            <p className='mt-2'>No release date available</p>
+          )}
         </div>
         <MovieRating voteAverage={movie.vote_average} />
       </div>
