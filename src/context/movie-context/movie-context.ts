@@ -6,6 +6,7 @@ interface MovieContext {
   favoriteMovies: Movie[]
   addFavoriteMovie: (movie: Movie) => void
   removeFavoriteMovie: (movieId: number) => void
+  isMovieFavorite: (movieId: number) => boolean
 }
 export const MovieContext = createContext<MovieContext>({} as MovieContext)
 

@@ -9,7 +9,7 @@ import NextLink from '../ui/next-link'
 
 export const Navbar = () => {
   return (
-    <header className='sticky inset-0 z-10 bg-neutral-900/75 backdrop-blur-md border-b border-neutral-800'>
+    <header className='sticky inset-0 z-[100] bg-neutral-900/75 backdrop-blur-md border-b border-neutral-800'>
       <nav className='container flex justify-between items-center'>
         <NextLink href='/'>
           <Image

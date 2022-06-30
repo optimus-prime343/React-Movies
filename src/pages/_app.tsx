@@ -8,6 +8,7 @@ import NProgress from 'nprogress'
 import { useEffect } from 'react'
 
 import { Navbar } from '../components/layouts'
+import { MovieContextProvider } from '../context/movie-context'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -25,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Navbar />
       <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
-        <Component {...pageProps} />
+        <MovieContextProvider>
+          <Component {...pageProps} />
+        </MovieContextProvider>
       </AnimatePresence>
     </>
   )

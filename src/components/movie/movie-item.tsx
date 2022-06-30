@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { BsHeart } from 'react-icons/bs'
 import { IoMdWarning } from 'react-icons/io'
 
 import { Movie } from '../../types/movie'
@@ -7,6 +6,7 @@ import { formatDate } from '../../utils/format-date'
 import { getMovieImageUrl } from '../../utils/get-movie-image-url'
 import NextLink from '../ui/next-link'
 import { MovieRating } from './movie-rating'
+import { ToggleFavoriteMovie } from './toggle-favorite-movie'
 
 interface MovieItemProps {
   movie: Movie
@@ -22,7 +22,7 @@ export const MovieItem = ({ movie }: MovieItemProps) => {
     <div>
       <div className='relative'>
         <div className='absolute right-4 top-4 z-10 cursor-pointer'>
-          <BsHeart />
+          <ToggleFavoriteMovie movie={movie} />
         </div>
         {movie.backdrop_path ? (
           <Image
