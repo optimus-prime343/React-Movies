@@ -1,4 +1,4 @@
-import { HTMLAttributes, useRef } from 'react'
+import { Fragment, HTMLAttributes, useEffect, useRef } from 'react'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 interface CarouselProps extends HTMLAttributes<HTMLDivElement> {
@@ -18,7 +18,25 @@ export const Carousel = ({ children, ...rest }: CarouselProps) => {
     }
   }
 
-  const carouselSlides = children.map(child => <>{child}</>)
+  const carouselSlides = children.map((child, index) => (
+    <Fragment key={index}>{child}</Fragment>
+  ))
+
+  useEffect(() => {
+    if (!slidesContainer.current) return
+    const { current } = slidesContainer
+
+    const handleMouseWheel = (event: WheelEvent) => {
+      event.preventDefault()
+      if (event.deltaY < 0) return handleSlideClick('left')
+      handleSlideClick('right')
+    }
+
+    current.addEventListener('wheel', handleMouseWheel, { passive: false })
+    return () => {
+      current.removeEventListener('wheel', handleMouseWheel)
+    }
+  }, [])
 
   return (
     <div className='flex items-center justify-between gap-2' {...rest}>
